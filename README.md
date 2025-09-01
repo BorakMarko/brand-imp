@@ -66,3 +66,50 @@ documentation in Paragon is coming soon. In the meantime, you can start
 a theme by the contents of [\_variables.scss (after line
 7)](https://github.com/openedx/paragon/blob/master/scss/core/_variables.scss#L7-L1046)
 file from the Paragon repository into this file.
+
+
+Ovde sam krenuo da radim 
+
+
+# 2) Napravi plugin fajl
+cat > "$(tutor plugins printroot)/brand_imp_all_mfes.py" <<'PY'
+from tutor import hooks
+
+# Podesiva vrednost u configu da po potrebi promeniš izvor brenda
+hooks.Filters.CONFIG_DEFAULTS.add_items([
+("BRAND_IMP_NPM", "git+https://github.com/BorakMarko/brand-imp.git#main"),
+])
+hooks.Filters.CONFIG_UNIQUE.add_items(["BRAND_IMP_NPM"])
+
+def _inject_brand(config):
+url = config.get("BRAND_IMP_NPM", "").strip()
+if not url:
+return ""
+# Ovo zamenjuje @edx/brand u SVIM MFE Dockerfile-ovima
+return f"""
+# === Inject custom @edx/brand for ALL MFEs ===
+RUN npm install "@edx/brand@{url}"
+"""
+# Hook posle default npm install-a u MFE slikama
+hooks.Filters.ENV_PATCHES.add_item(("mfe-dockerfile-post-npm-install", _inject_brand))
+PY
+
+# Omogući zvanični tutor-mfe plugin (ako već nije)
+tutor plugins enable mfe
+
+# Uključi tvoj plugin
+tutor plugins enable brand_imp_all_mfes
+
+# (opciono) Ako želiš drugi branch/tag/privatni repo sa PAT-om, promeni URL:
+# tutor config save --set BRAND_IMP_NPM="git+https://<TOKEN>@github.com/BorakMarko/brand-imp.git#v1.0.0"
+
+# Potvrdi trenutnu vrednost
+tutor config printvalue BRAND_IMP_NPM
+
+# Izgradi sve MFE-ove sa novim brendom
+tutor images build mfe
+
+# Primeni u local okruženju
+tutor local restart mfe lms cms
+# (u dev okruženju bi bilo: tutor dev start mfe)
+

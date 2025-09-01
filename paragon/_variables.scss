@@ -1,2 +1,88 @@
 // Use this file to set SASS variables for @edx/paragon
 // See _variables.scss in https://github.com/openedx/paragon/blob/master/scss/core/ for reference
+// ===== Brand tokens (osnova) =====
+$brand-primary:       #316FB4; // glavna plava (iz logotipa)
+$brand-primary-dark:  #255A93; // hover/active
+$brand-primary-light: #5A95D1; // fokus/akcenti
+
+$brand-secondary:     #95A0AC; // siva iz logotipa/geometrije
+
+$neutral-50:          #F0F6F9;
+$neutral-100:         #E5EEF3;
+$neutral-300:         #B9C8D4;
+$neutral-700:         #2A2E34;
+
+// Status
+$brand-success:       #1B9E5A;
+$brand-info:          #2B8CD8;
+$brand-warning:       #F59E0B;
+$brand-danger:        #DC2626;
+
+// ===== Paragon / Bootstrap tematske boje =====
+$primary:   $brand-primary;
+$secondary: $brand-secondary;
+$success:   $brand-success;
+$info:      $brand-info;
+$warning:   $brand-warning;
+$danger:    $brand-danger;
+$light:     $neutral-50;
+$dark:      $neutral-700;
+
+// Mapu boja eksplicitno prepiši da Paragon/Bootstrap koriste naš izbor
+$theme-colors: (
+        "primary":   $primary,
+        "secondary": $secondary,
+        "success":   $success,
+        "info":      $info,
+        "warning":   $warning,
+        "danger":    $danger,
+        "light":     $light,
+        "dark":      $dark
+);
+
+// ===== Tipografija =====
+// Koristi Inter ako ga imaš, fallback na system ui
+$font-family-sans-serif: "Inter", "Open Sans", system-ui, -apple-system, "Segoe UI",
+Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+
+// Osnovni layout
+$body-bg:    $neutral-50;
+$body-color: $neutral-700;
+
+// Linkovi
+$link-color:        $primary;
+$link-hover-color:  $brand-primary-dark;
+$link-decoration:   none;
+$link-hover-decoration: underline;
+
+// Dugmad
+$btn-border-radius:        .5rem;
+$btn-border-radius-sm:     .375rem;
+$btn-border-radius-lg:     .625rem;
+
+$btn-focus-width:          2px;
+$btn-focus-box-shadow:     0 0 0 0.2rem rgba($brand-primary, .25);
+
+// Forme/fokus
+$input-focus-border-color: $brand-primary;
+$input-focus-box-shadow:   0 0 0 .2rem rgba($brand-primary, .2);
+
+// Karte/panels
+$card-border-radius: .75rem;
+
+// Navbar
+$navbar-light-color:               $neutral-700;
+$navbar-light-hover-color:         $brand-primary-dark;
+$navbar-light-active-color:        $brand-primary-dark;
+$navbar-light-brand-color:         $brand-primary;
+$navbar-light-brand-hover-color:   $brand-primary-dark;
+
+// Badges
+$badge-border-radius: .5rem;
+
+// Alerts
+$alert-border-radius: .5rem;
+
+// Tabela hover
+$table-hover-bg: rgba($brand-primary, 0.05);
+

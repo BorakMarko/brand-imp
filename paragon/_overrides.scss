@@ -1,2 +1,66 @@
 // Use this file to define style overrides for @edx/paragon
 // This file is included after all Paragon styles, but should generally avoid using private mixins in Paragon.
+// Globalni background (blaga plava iz palete)
+body {
+  background: linear-gradient(180deg, #F4F8FB 0%, #EAF2F8 100%);
+}
+
+// Header (MFE NavBar / Paragon Navbar)
+.navbar, .site-header {
+  background: linear-gradient(90deg, #316FB4 0%, #255A93 100%) !important;
+  .nav-link, .navbar-brand {
+    color: #ffffff !important;
+  }
+  .nav-link:hover, .nav-link:focus {
+    color: #E5EEF3 !important;
+  }
+}
+
+// Primarno dugme – punije, sa blagom senkom
+.btn-primary {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  box-shadow: 0 6px 14px rgba($brand-primary, .25);
+  &:hover, &:focus {
+    background-color: $brand-primary-dark;
+    border-color: $brand-primary-dark;
+    box-shadow: 0 6px 16px rgba($brand-primary, .35);
+  }
+}
+
+// Link dugmad i tekst-linkovi
+.btn-link, a {
+  transition: color .15s ease, text-decoration-color .15s ease;
+}
+
+// Kartice
+.card {
+  border: 1px solid $neutral-300;
+  border-radius: $card-border-radius;
+  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+}
+
+// Progress bar
+.progress-bar {
+  background-color: $brand-primary;
+}
+
+// Checkbox / radio – fokus prsten u brand boji
+.form-check-input:focus {
+  box-shadow: 0 0 0 .2rem rgba($brand-primary, .25);
+  border-color: $brand-primary;
+}
+
+// Fokus na input/selektor
+.form-control:focus, .form-select:focus {
+  border-color: $brand-primary;
+  box-shadow: 0 0 0 .2rem rgba($brand-primary, .2);
+}
+
+// Footer
+.site-footer, footer {
+  background: #1E3450;
+  color: #E5EEF3;
+  a { color: #E5EEF3; }
+  a:hover { color: #ffffff; }
+}
